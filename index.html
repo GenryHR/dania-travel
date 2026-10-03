@@ -8,6 +8,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,500;1,6..96,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script>
+/* Фиксируем высоту Hero на момент загрузки: в браузере Telegram шапка сворачивается при скролле,
+   высота окна «прыгает», и без этого Hero и фон дёргаются. На телефонах игнорируем изменения только высоты. */
+(function(){
+  var d=document.documentElement, w=innerWidth, h=innerHeight;
+  var coarse=window.matchMedia&&matchMedia('(pointer:coarse)').matches;
+  function set(){ if(h>300) d.style.setProperty('--app-h',h+'px'); }
+  function remeasure(){ w=innerWidth; h=innerHeight; set(); }
+  set();
+  addEventListener('resize',function(){ if(innerWidth!==w||!coarse) remeasure(); });
+  addEventListener('orientationchange',function(){ setTimeout(remeasure,350); });
+  addEventListener('load',function(){ if(!window.scrollY) remeasure(); });
+})();
+</script>
 </head>
 <body>
 
