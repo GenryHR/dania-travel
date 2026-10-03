@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>В поисках чего-то большего — трэвел-дневник</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,500;1,6..96,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="entrance" id="entrance">
+  <div class="entrance-title">В поисках чего-то большего</div>
+</div>
+
+<nav class="mini-nav" id="mini-nav">
+  <div class="mini-nav-inner">
+    <span class="mini-nav-title">В поисках чего-то большего</span>
+    <div class="mini-nav-links">
+      <a href="#visited">Пройденные</a>
+      <a href="#planned">Куда дальше<span class="qm">?</span></a>
+      <span class="owner-tag">Режим владельца · <button type="button" class="signout" id="signout-btn">выйти</button></span>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="hero">
+  <div class="hero-bg" id="hero-bg"></div>
+  <div class="hero-scrim"></div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow">Трэвел-дневник Дани</span>
+    <h1>В поисках чего-то большего</h1>
+    <p class="hero-sub">Места, которые я уже увидел. Места, которые ещё только предстоит увидеть.</p>
+    <div class="hero-foot">
+      <div class="hero-links">
+        <a href="#visited">Пройденные места</a>
+        <span class="sep">&middot;</span>
+        <a href="#planned">Куда дальше<span class="qm">?</span></a>
+      </div>
+      <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="ed-section" id="visited">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Пройденные локации</h2>
+        <p>Впечатления, детали маршрута и то, что осталось в памяти после каждой поездки.</p>
+      </div>
+      <div class="entry-list" id="visited-list"></div>
+    </div>
+  </section>
+
+  <section class="ed-section tight">
+    <div class="wrap stats-wrap">
+      <div class="stat-big"><b id="stat-visited">0</b><span>Пройдено</span></div>
+      <div class="stat-big"><b id="stat-planned">0</b><span>В планах</span></div>
+    </div>
+  </section>
+
+  <section class="ed-section" id="planned">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Куда дальше<span class="qm">?</span></h2>
+        <p>Список следующих поездок.</p>
+      </div>
+      <div class="entry-list" id="planned-list"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <span class="foot-title">до встречи в пути</span>
+      <div class="foot-links">
+        <a href="#visited">Пройденные</a>
+        <a href="#planned">Куда дальше<span class="qm">?</span></a>
+      </div>
+    </div>
+    <div class="foot-bottom">«В поисках чего-то большего» — личный трэвел-дневник</div>
+  </div>
+</footer>
+
+<button class="fab" id="add-btn" type="button">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+  Добавить локацию
+</button>
+
+<div class="login-overlay" id="login-overlay">
+  <div class="login-box">
+    <h2>Вход для владельца</h2>
+    <p>Эта страница только для тебя — остальные её не видят и на неё не попадут.</p>
+    <form id="login-form">
+      <div class="field"><input type="email" id="login-email" placeholder="Почта" autocomplete="username" required></div>
+      <div class="field"><input type="password" id="login-password" placeholder="Пароль" autocomplete="current-password" required></div>
+      <div class="login-actions">
+        <button type="button" class="btn btn-ghost" id="login-cancel">Отмена</button>
+        <button type="submit" class="btn btn-primary">Войти</button>
+      </div>
+      <p class="login-msg" id="login-msg"></p>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <h2 id="modal-title">Новая локация</h2>
+    <form id="entry-form">
+      <div class="field">
+        <label>Категория</label>
+        <div class="cat-toggle">
+          <label><input type="radio" name="category" value="visited" checked><span>Уже посетил</span></label>
+          <label><input type="radio" name="category" value="planned"><span>Хочу посетить</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-name">Название локации</label>
+        <input type="text" id="f-name" required placeholder="Например: Плёс, Ивановская область">
+      </div>
+      <div class="field">
+        <label for="f-date">Дата поездки (необязательно)</label>
+        <input type="date" id="f-date">
+      </div>
+      <div class="field">
+        <label for="f-desc">Описание</label>
+        <textarea id="f-desc" placeholder="Впечатления, детали маршрута, эмоции..."></textarea>
+      </div>
+      <div class="field">
+        <label>Фото и видео</label>
+        <div class="media-input-row" id="media-previews"></div>
+        <label class="file-btn">
+          <input type="file" id="f-photos" accept="image/*" multiple class="sr-only">
+          Выбрать фото
+        </label>
+        <label class="file-btn">
+          <input type="file" id="f-video-file" accept="video/*" multiple class="sr-only">
+          Загрузить видео
+        </label>
+        <div class="link-row">
+          <input type="url" id="f-video-link" placeholder="или ссылка на видео (YouTube, Vimeo...)">
+          <button type="button" class="btn btn-ghost" id="f-video-link-add">Добавить</button>
+        </div>
+        <div class="upload-row" id="upload-row" style="display:none;">
+          <span class="upload-spinner"></span>
+          <span id="upload-label">Загрузка...</span>
+        </div>
+        <p class="field-hint">Фото сжимаются перед отправкой и хранятся в Cloudinary.</p>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="modal-cancel">Отмена</button>
+        <button type="submit" class="btn btn-primary" id="modal-save">Сохранить</button>
+      </div>
+      <p class="modal-msg" id="modal-msg"></p>
+    </form>
+  </div>
+</div>
+
+<div class="carousel" id="carousel">
+  <div class="carousel-stage" id="carousel-stage"></div>
+  <button class="carousel-arrow prev" id="carousel-prev" aria-label="Предыдущее">&#8592;</button>
+  <button class="carousel-arrow next" id="carousel-next" aria-label="Следующее">&#8594;</button>
+  <div class="carousel-counter" id="carousel-counter"></div>
+  <button class="carousel-close" id="carousel-close" aria-label="Закрыть">&#10005;</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var entrance = document.getElementById('entrance');
+  if(!entrance) return;
+  var seen = false;
+  try { seen = !!sessionStorage.getItem('td_entrance_seen'); } catch(e){}
+  if(seen){ entrance.classList.add('skip'); return; }
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ entrance.classList.add('ready'); }); });
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  setTimeout(function(){
+    entrance.classList.add('leave');
+    try { sessionStorage.setItem('td_entrance_seen','1'); } catch(e){}
+    setTimeout(function(){ entrance.classList.add('skip'); }, 1200);
+  }, reduce ? 300 : 1500);
+})();
+</script>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>
